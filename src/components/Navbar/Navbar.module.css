@@ -5,7 +5,8 @@
   padding: 20px 0;
   flex: 1;
   color: var(--clr-wheat);
-  border: 2px solid rebeccapurple;
+  /* border: 2px solid rebeccapurple; */
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .Navbar h1 {
@@ -15,11 +16,12 @@
 .Navbar ul {
   display: flex;
   margin-left: auto;
-  margin-right: auto;
+  /* margin-right: auto; */
   list-style: none;
+  padding-left: 10px;
 }
 
 .Navbar ul li {
   padding: 0 10px;
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }

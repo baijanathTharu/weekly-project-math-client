@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styles from "./Form.module.css";
 
 const Form = () => {
@@ -8,7 +9,9 @@ const Form = () => {
       <form action="">
         <input className={styles.Input} type="text" name="username" />
         <div className={styles.buttonContainer}>
-          <button className={styles.Button}>Play</button>
+          <button className={styles.Button}>
+            <Link to="/gametype">Play</Link>
+          </button>
         </div>
       </form>
     </div>

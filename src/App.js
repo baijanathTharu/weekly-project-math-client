@@ -1,9 +1,12 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { Switch, BrowserRouter, Route } from "react-router-dom";
 
 // import socketIO from "socket.io-client";
 // components
 import Home from "./components/Home/Home";
+import Gametype from "./components/Gametype/Gametype";
+import Singleplayer from "./components/Singleplayer/Singleplayer";
+import Multiplayer from "./components/Multiplayer/Multiplayer";
 
 // const url = `http://localhost:3001`;
 
@@ -24,7 +27,12 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <Route path="/" component={Home} />
+      <Switch>
+        <Route path="/gametype" component={Gametype} />
+        <Route path="/single" component={Singleplayer} />
+        <Route path="/multi" component={Multiplayer} />
+        <Route path="/" component={Home} />
+      </Switch>
     </BrowserRouter>
   );
 };

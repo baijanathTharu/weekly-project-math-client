@@ -1,0 +1,25 @@
+.Navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  flex: 1;
+  color: var(--clr-wheat);
+  border: 2px solid rebeccapurple;
+}
+
+.Navbar h1 {
+  padding-left: 10px;
+}
+
+.Navbar ul {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  list-style: none;
+}
+
+.Navbar ul li {
+  padding: 0 10px;
+  font-size: 1.75rem;
+}

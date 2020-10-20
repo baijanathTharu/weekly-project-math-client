@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 
-function App() {
+// import socketIO from "socket.io-client";
+// components
+import Home from "./components/Home/Home";
+
+// const url = `http://localhost:3001`;
+
+const App = () => {
+  // const [msg, setMsg] = useState("");
+
+  // useEffect(() => {
+  //   const socket = socketIO(url);
+  //   socket.on("connection", () => {
+  //     console.log("connected to the server...");
+  //   });
+  //   socket.emit("message", "Hello server whats up?");
+  //   socket.on("message", (msg) => {
+  //     setMsg(msg);
+  //     console.log(`Message received from the server:: ${msg}`);
+  //   });
+  // }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Route path="/" component={Home} />
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

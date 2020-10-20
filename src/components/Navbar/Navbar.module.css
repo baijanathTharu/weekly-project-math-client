@@ -5,12 +5,14 @@
   padding: 20px 0;
   flex: 1;
   color: var(--clr-wheat);
+  min-height: 10vh;
   /* border: 2px solid rebeccapurple; */
   background-color: rgba(0, 0, 0, 0.5);
 }
 
 .Navbar h1 {
   padding-left: 10px;
+  color: var(--clr-wheat);
 }
 
 .Navbar ul {
@@ -23,5 +25,5 @@
 
 .Navbar ul li {
   padding: 0 10px;
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 }

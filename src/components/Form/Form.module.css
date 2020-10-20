@@ -1,16 +1,12 @@
 .Form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
   max-width: 500px;
+  max-height: 300px;
+  padding: 30px;
+  margin: 0 auto;
   color: var(--clr-black);
   background-color: var(--clr-blue);
-  border-radius: 30px;
-  box-shadow: 2px 4px 2px var(--clr-black);
-  padding: 30px;
-  margin: 0 10px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px var(--clr-blue);
 }
 
 .Form h2 {
@@ -46,12 +42,15 @@
   margin: 10px 0;
   height: auto;
   padding: 10px;
-  font-size: 1.65rem;
-  font-weight: bold;
-  color: var(--clr-black);
   background-color: var(--clr-orangered);
   outline: none;
   border: none;
   border-radius: 30px;
   cursor: pointer;
+}
+
+.Button a {
+  font-size: 1.65rem;
+  font-weight: bold;
+  color: var(--clr-black);
 }

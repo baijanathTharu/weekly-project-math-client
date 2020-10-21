@@ -6,7 +6,14 @@ const LeftsideSingle = ({
   userOptions: { quantity, level, type, setQuantity, setLevel, setType },
   fetchQuestions,
   fetched,
+  fetching,
 }) => {
+  const loader = fetching ? (
+    <div className={styles.LoaderContainer}>
+      <Loader className={styles.Loader} />
+    </div>
+  ) : null;
+
   return (
     <div className={styles.LeftsideSingle}>
       <div className={fetched ? styles.Count : styles.hide}>
@@ -49,12 +56,12 @@ const LeftsideSingle = ({
           </select>
         </div>
         <div
-          className="FetchButton"
+          className={styles.FetchButton}
           onClick={() => fetchQuestions(quantity, level, type)}
         >
-          <p>FetchQuestions</p>
-          <Loader />
+          <p>Start</p>
         </div>
+        {loader}
       </div>
     </div>
   );

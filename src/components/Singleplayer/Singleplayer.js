@@ -8,12 +8,14 @@ const Singleplayer = ({ user }) => {
   const [quantity, setQuantity] = useState(10);
   const [level, setLevel] = useState("easy");
   const [type, setType] = useState("boolean");
+  const [fetching, setFetching] = useState(false);
   const [fetched, setFetched] = useState(false);
 
   // https://opentdb.com/api.php?amount=10&category=19&difficulty=medium&type=boolean
   const url = "https://opentdb.com/api.php?category=19";
 
   const fetchQuestions = async (amount, level, type) => {
+    setFetching(!fetching);
     const res = await fetch(
       `${url}&amount=${quantity}&difficult=${level}&type=${type}`
     );
@@ -49,6 +51,7 @@ const Singleplayer = ({ user }) => {
             }}
             fetchQuestions={fetchQuestions}
             fetched={fetched}
+            fetching={fetching}
           />
         </div>
         <div className={styles.Main}>

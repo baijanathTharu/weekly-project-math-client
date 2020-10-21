@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Switch, BrowserRouter, Route } from "react-router-dom";
 
 // import socketIO from "socket.io-client";
@@ -11,6 +11,8 @@ import Multiplayer from "./components/Multiplayer/Multiplayer";
 // const url = `http://localhost:3001`;
 
 const App = () => {
+  const [username, setUsername] = useState("Jake");
+
   // const [msg, setMsg] = useState("");
 
   // useEffect(() => {
@@ -29,9 +31,17 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <Route path="/gametype" component={Gametype} />
-        <Route path="/single" component={Singleplayer} />
+        <Route
+          path="/single"
+          render={(props) => <Singleplayer {...props} user={username} />}
+        />
         <Route path="/multi" component={Multiplayer} />
-        <Route path="/" component={Home} />
+        <Route
+          path="/"
+          render={(props) => (
+            <Home {...props} user={username} setUser={setUsername} />
+          )}
+        />
       </Switch>
     </BrowserRouter>
   );

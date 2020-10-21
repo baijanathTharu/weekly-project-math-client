@@ -1,0 +1,41 @@
+.LeftsideSingle {
+  color: var(--clr-wheat);
+}
+
+.Count {
+  margin: 15px;
+}
+
+.Option {
+  margin: 15px;
+}
+
+.Option h3,
+.Count h3 {
+  color: rgb(228, 110, 110);
+  margin: 10px 0;
+  font-weight: bold;
+  font-size: 1.65rem;
+}
+
+.Option Input {
+  height: 3rem;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--clr-wheat);
+  outline: none;
+}
+
+.Option Select {
+  height: 3rem;
+  width: 100%;
+  /* padding: 10px; */
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--clr-wheat);
+  outline: none;
+}

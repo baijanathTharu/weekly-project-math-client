@@ -2,7 +2,7 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  border: 1px solid wheat;
+  /* border: 1px solid wheat; */
   position: relative;
 }
 
@@ -11,8 +11,8 @@
   top: 0;
   left: 0;
   height: 90vh;
-  background-color: green;
-  width: 350px;
+  background-color: var(--clr-bluish-dark);
+  width: 300px;
 }
 
 .Count {
@@ -25,15 +25,18 @@
 }
 
 .Main {
-  background-color: white;
+  background-color: var(--clr-wheat);
   flex: 1;
   min-width: 350px;
+  color: black;
+  margin-left: 300px;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .Main {
     min-width: 100%;
     width: 100%;
+    margin-left: 0;
   }
 
   .Leftside {

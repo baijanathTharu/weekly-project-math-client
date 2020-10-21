@@ -15,35 +15,38 @@ const Singleplayer = ({ user }) => {
   // https://opentdb.com/api.php?amount=10&category=19&difficulty=medium&type=boolean
   const url = "https://opentdb.com/api.php?category=19";
 
-  const questionsList = (
-    <>
-      <div className={styles.QuestionContainer}>
-        <div className={styles.Question}>
-          <p>
-            When was the Declaration of Independence approved by the Second
-            Continental Congress?
-          </p>
-        </div>
-      </div>
-      <div className={styles.OptionContainer}>
-        <div className={styles.Option}>
-          <p>May 4, 1776</p>
-        </div>
-        <div className={styles.Option}>
-          <p>June 4, 1776</p>
-        </div>
-        <div className={styles.Option}>
-          <p>July 4, 1776</p>
-        </div>
-        <div className={styles.Option}>
-          <p>July 2, 1776</p>
-        </div>
-      </div>
-      <div className={styles.ButtonContainer}>
-        <button>Submit</button>
-      </div>
-    </>
-  );
+  const questionsList = questions
+    ? questions.map(({ question, correct_answer, incorrect_answers }, idx) => {
+        const answersArr = [...incorrect_answers];
+        const rand = Math.floor(Math.random() * (incorrect_answers.length + 1));
+        answersArr.splice(rand, 0, correct_answer);
+
+        console.log("Options: ", answersArr);
+        console.log("correct: ", correct_answer);
+
+        const options = answersArr.map((ans, idx) => {
+          return (
+            <div key={idx} className={styles.Option}>
+              <p>{ans}</p>
+            </div>
+          );
+        });
+
+        return (
+          <div className={styles.QuestionBorder} key={idx}>
+            <div className={styles.QuestionContainer}>
+              <div className={styles.Question}>
+                <p>{idx + 1 + ". " + question}</p>
+              </div>
+            </div>
+            <div className={styles.OptionContainer}>{options}</div>
+            <div className={styles.ButtonContainer}>
+              <button>Submit</button>
+            </div>
+          </div>
+        );
+      })
+    : null;
 
   const welcomeUser = (
     <div className={styles.WelcomeUser}>
@@ -62,17 +65,13 @@ const Singleplayer = ({ user }) => {
     const res = await fetch(
       `${url}&amount=${quantity}&difficult=${level}&type=${type}`
     );
-    const questions = await res.json();
+    const data = await res.json();
     setFetched(true);
-    setQuestions(questions);
+    // results has array of questions
+    setQuestions(data.results);
     setShow(!show);
-    console.log(questions);
+    console.log(data.results);
   };
-
-  // useEffect(() => {
-  //   fetchQuestions(quantity, level, type);
-  //   return () => {};
-  // }, []);
 
   return (
     <Layout>

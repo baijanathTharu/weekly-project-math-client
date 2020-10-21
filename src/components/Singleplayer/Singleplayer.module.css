@@ -10,7 +10,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 90vh;
+  height: 100%;
   background-color: var(--clr-bluish-dark);
   width: 300px;
 }
@@ -42,6 +42,7 @@
 }
 
 .WelcomeUser h2 {
+  text-align: center;
   color: var(--clr-black);
   font-size: 3rem;
   font-weight: bold;
@@ -57,6 +58,12 @@
 
 .WelcomeUser h3 {
   font-size: 2.5rem;
+}
+
+.QuestionBorder {
+  padding: 20px;
+  margin: 10px 0;
+  margin-top: 0;
 }
 
 .QuestionContainer {

@@ -1,7 +1,9 @@
 .Layout {
   min-height: 100vh;
+  /* border: 2px solid red; */
 }
 .Content {
   display: flex;
   min-height: 90vh;
+  /* border: 10px solid green; */
 }

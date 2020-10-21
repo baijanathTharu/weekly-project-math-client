@@ -31,10 +31,31 @@ const Singleplayer = ({ user }) => {
           />
         </div>
         <div className={styles.Main}>
-          <h3>Main</h3>
-          <p>quantity: {quantity}</p>
-          <p>level: {level}</p>
-          <p>Type: {type}</p>
+          <div className={styles.QuestionContainer}>
+            <div className={styles.Question}>
+              <p>
+                When was the Declaration of Independence approved by the Second
+                Continental Congress?
+              </p>
+            </div>
+          </div>
+          <div className={styles.OptionContainer}>
+            <div className={styles.Option}>
+              <p>May 4, 1776</p>
+            </div>
+            <div className={styles.Option}>
+              <p>June 4, 1776</p>
+            </div>
+            <div className={styles.Option}>
+              <p>July 4, 1776</p>
+            </div>
+            <div className={styles.Option}>
+              <p>July 2, 1776</p>
+            </div>
+          </div>
+          <div className={styles.ButtonContainer}>
+            <button>Submit</button>
+          </div>
         </div>
         <div className={styles.Button} onClick={() => setShow(!show)}></div>
       </div>

@@ -32,11 +32,78 @@
   margin-left: 300px;
 }
 
+.QuestionContainer {
+  background-color: var(--clr-blue);
+  width: 100%;
+  padding: 20px;
+}
+
+.Question {
+  text-align: center;
+  color: var(--clr-wheat);
+  font-size: 1.65rem;
+}
+
+.OptionContainer {
+  margin: 20px;
+  /* border: 2px solid green; */
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+}
+
+.Option {
+  margin: 20px;
+  padding: 20px;
+  background-color: #51519e;
+  border: none;
+  border-radius: 100%;
+  cursor: pointer;
+}
+
+.Option:hover {
+  background-color: green;
+}
+
+.Option p {
+  text-align: center;
+  font-size: 1.5rem;
+  color: var(--clr-wheat);
+}
+
+.ButtonContainer {
+  width: 100%;
+  /* border: 1px solid red; */
+  margin: 20px 0;
+}
+
+.ButtonContainer button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.5rem;
+  padding: 10px;
+  background-color: var(--clr-bluish-dark);
+  color: var(--clr-wheat);
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+.ButtonContainer button:hover {
+  background-color: var(--clr-orangered);
+  /* color: var(--clr-bluish-dark); */
+}
+
 @media (max-width: 768px) {
   .Main {
     min-width: 100%;
     width: 100%;
     margin-left: 0;
+  }
+
+  .OptionContainer {
+    grid-template-columns: repeat(auto-fit, minmax(300px, auto));
   }
 
   .Leftside {

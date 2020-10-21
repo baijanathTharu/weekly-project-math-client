@@ -12,7 +12,7 @@
 
 .Option h3,
 .Count h3 {
-  color: rgb(228, 110, 110);
+  color: var(--clr-darkpink);
   margin: 10px 0;
   font-weight: bold;
   font-size: 1.65rem;

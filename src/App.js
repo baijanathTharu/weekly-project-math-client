@@ -11,7 +11,7 @@ import Multiplayer from "./components/Multiplayer/Multiplayer";
 // const url = `http://localhost:3001`;
 
 const App = () => {
-  const [username, setUsername] = useState("Jake");
+  const [username, setUsername] = useState("");
 
   // const [msg, setMsg] = useState("");
 

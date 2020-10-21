@@ -6,16 +6,20 @@ import styles from "./Form.module.css";
 const Form = ({ user, setUser }) => {
   return (
     <div className={styles.Form}>
-      <h1>Hello {user}</h1>
       <h2>Enter Your Username</h2>
-      <form action="">
-        <input className={styles.Input} type="text" name="username" />
-        <div className={styles.buttonContainer}>
-          <button className={styles.Button}>
-            <Link to="/gametype">Play</Link>
-          </button>
-        </div>
-      </form>
+
+      <input
+        className={styles.Input}
+        type="text"
+        value={user}
+        onChange={(e) => setUser(e.target.value)}
+        name="username"
+      />
+      <div className={styles.buttonContainer}>
+        <Link to="/gametype" className={!user ? styles.disabled : null}>
+          <button className={styles.Button}>Play</button>
+        </Link>
+      </div>
     </div>
   );
 };

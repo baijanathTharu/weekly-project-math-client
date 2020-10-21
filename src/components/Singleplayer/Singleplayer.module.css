@@ -7,8 +7,8 @@
 }
 
 .Leftside {
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 10vh;
   left: 0;
   height: 100%;
   background-color: var(--clr-bluish-dark);

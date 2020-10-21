@@ -2,7 +2,6 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  /* border: 1px solid wheat; */
   position: relative;
 }
 
@@ -62,41 +61,43 @@
 
 .QuestionBorder {
   padding: 20px;
-  margin: 10px 0;
-  margin-top: 0;
+  margin: 10px 15px;
+}
+
+.QuestionBorder:hover {
+  background-color: rgba(255, 69, 0, 0.5);
 }
 
 .QuestionContainer {
-  background-color: var(--clr-blue);
+  /* background-color: var(--clr-blue); */
   width: 100%;
   padding: 20px;
+  border: 10px;
 }
 
 .Question {
-  text-align: center;
-  color: var(--clr-wheat);
+  color: var(--clr-black);
   font-size: 1.65rem;
 }
 
 .OptionContainer {
   margin: 20px;
-  /* border: 2px solid green; */
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(300px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .Option {
   margin: 20px;
   padding: 20px;
-  background-color: #51519e;
+  background-color: rgb(70, 70, 163);
   border: none;
-  border-radius: 100%;
+  border-radius: 10px;
   cursor: pointer;
 }
 
 .Option:hover {
-  background-color: green;
+  background-color: rgb(40, 133, 40);
 }
 
 .Option p {
@@ -107,7 +108,6 @@
 
 .ButtonContainer {
   width: 100%;
-  /* border: 1px solid red; */
   margin: 20px 0;
 }
 
@@ -117,7 +117,7 @@
   margin-right: auto;
   font-size: 1.5rem;
   padding: 10px;
-  background-color: var(--clr-bluish-dark);
+  background-color: var(--clr-black);
   color: var(--clr-wheat);
   border-radius: 10px;
   outline: none;
@@ -125,8 +125,7 @@
 }
 
 .ButtonContainer button:hover {
-  background-color: var(--clr-orangered);
-  /* color: var(--clr-bluish-dark); */
+  background-color: rgb(40, 133, 40);
 }
 
 @media (max-width: 768px) {

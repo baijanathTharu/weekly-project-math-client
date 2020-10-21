@@ -13,9 +13,26 @@ const Singleplayer = ({ user }) => {
   const [fetching, setFetching] = useState(false);
   const [fetched, setFetched] = useState(false);
   const [questions, setQuestions] = useState("");
+  const [optionClicked, setOptionClicked] = useState([]);
 
   // https://opentdb.com/api.php?amount=10&category=19&difficulty=medium&type=boolean
   const url = "https://opentdb.com/api.php?category=19";
+
+  // check answer handler
+  const checkAnswer = (correct, ans, id) => {
+    // console.log("correct: ", correct);
+    // console.log("answ: ", ans);
+    if (correct === ans) {
+      // console.log("Correct answer");
+    } else {
+      // console.log("wrong answer");
+    }
+    const newArr = [...optionClicked];
+    newArr.splice(id, 0, { status: true, queId: id });
+    setOptionClicked(newArr);
+    console.log("newARr: ", newArr);
+    console.log("optionClicked: ", optionClicked);
+  };
 
   const questionsList = questions
     ? questions.map(({ question, correct_answer, incorrect_answers }, idx) => {
@@ -23,12 +40,20 @@ const Singleplayer = ({ user }) => {
         const rand = Math.floor(Math.random() * (incorrect_answers.length + 1));
         answersArr.splice(rand, 0, correct_answer);
 
-        console.log("Options: ", answersArr);
-        console.log("correct: ", correct_answer);
+        // console.log("Options: ", answersArr);
+        // console.log("correct: ", correct_answer);
 
-        const options = answersArr.map((ans, idx) => {
+        const options = answersArr.map((ans, idy) => {
+          // console.log("Optionclicked: ", optionClicked);
+          // console.log("idx: ", idx);
           return (
-            <div key={idx} className={styles.Option}>
+            <div
+              key={idy}
+              className={`${styles.Option} ${
+                optionClicked[idx]?.status ? styles.optionDisabled : null
+              }`}
+              onClick={() => checkAnswer(correct_answer, ans, idx)}
+            >
               <p>{entities.decodeHTML(ans)}</p>
             </div>
           );
@@ -42,9 +67,6 @@ const Singleplayer = ({ user }) => {
               </div>
             </div>
             <div className={styles.OptionContainer}>{options}</div>
-            <div className={styles.ButtonContainer}>
-              <button>Submit</button>
-            </div>
           </div>
         );
       })
@@ -72,7 +94,7 @@ const Singleplayer = ({ user }) => {
     // results has array of questions
     setQuestions(data.results);
     setShow(!show);
-    console.log(data.results);
+    // console.log(data.results);
   };
 
   return (

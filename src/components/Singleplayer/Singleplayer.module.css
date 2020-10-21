@@ -106,26 +106,10 @@
   color: var(--clr-wheat);
 }
 
-.ButtonContainer {
-  width: 100%;
-  margin: 20px 0;
-}
-
-.ButtonContainer button {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 1.5rem;
-  padding: 10px;
-  background-color: var(--clr-black);
-  color: var(--clr-wheat);
-  border-radius: 10px;
-  outline: none;
-  cursor: pointer;
-}
-
-.ButtonContainer button:hover {
-  background-color: rgb(40, 133, 40);
+.optionDisabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: gray;
 }
 
 @media (max-width: 768px) {

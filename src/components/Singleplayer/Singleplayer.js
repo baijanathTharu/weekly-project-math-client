@@ -3,6 +3,8 @@ import styles from "./Singleplayer.module.css";
 import Layout from "../Layout/Layout";
 import LeftsideSingle from "./LeftsideSingle";
 
+const entities = require("entities");
+
 const Singleplayer = ({ user }) => {
   const [show, setShow] = useState(false);
   const [quantity, setQuantity] = useState(10);
@@ -27,7 +29,7 @@ const Singleplayer = ({ user }) => {
         const options = answersArr.map((ans, idx) => {
           return (
             <div key={idx} className={styles.Option}>
-              <p>{ans}</p>
+              <p>{entities.decodeHTML(ans)}</p>
             </div>
           );
         });
@@ -36,7 +38,7 @@ const Singleplayer = ({ user }) => {
           <div className={styles.QuestionBorder} key={idx}>
             <div className={styles.QuestionContainer}>
               <div className={styles.Question}>
-                <p>{idx + 1 + ". " + question}</p>
+                <p>{idx + 1 + ". " + entities.decodeHTML(question)}</p>
               </div>
             </div>
             <div className={styles.OptionContainer}>{options}</div>
@@ -77,11 +79,7 @@ const Singleplayer = ({ user }) => {
     <Layout>
       <div className={styles.Layoutplayer}>
         <div
-          className={
-            show
-              ? [styles.Leftside, styles.show].join(" ")
-              : [styles.Leftside, styles.hide].join(" ")
-          }
+          className={`${styles.Leftside} ${show ? styles.show : styles.hide}`}
         >
           <LeftsideSingle
             userOptions={{

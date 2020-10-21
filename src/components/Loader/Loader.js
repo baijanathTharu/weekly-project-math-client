@@ -1,0 +1,8 @@
+import React from "react";
+import styles from "./Loader.module.css";
+
+const Loader = ({ isActive }) => {
+  return <div className={styles.Loader}></div>;
+};
+
+export default Loader;

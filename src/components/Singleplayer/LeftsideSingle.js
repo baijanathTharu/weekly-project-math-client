@@ -1,42 +1,60 @@
 import React from "react";
 import styles from "./LeftsideSingle.module.css";
+import Loader from "../Loader/Loader";
 
 const LeftsideSingle = ({
   userOptions: { quantity, level, type, setQuantity, setLevel, setType },
+  fetchQuestions,
+  fetched,
 }) => {
   return (
     <div className={styles.LeftsideSingle}>
-      <div className={styles.Count}>
+      <div className={fetched ? styles.Count : styles.hide}>
         <h3>Count will be here</h3>
       </div>
-      <div className={styles.Option}>
-        <h3>Number of Questions</h3>
-        <input
-          type="number"
-          name="questions"
-          placeholder={quantity}
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-        />
-      </div>
-      <div className={styles.Option}>
-        <h3>Difficulty Level</h3>
-        <select name="level" onChange={(e) => setLevel(e.target.value)}>
-          <option value="easy" defaultValue>
-            Easy
-          </option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
-      </div>
-      <div className={styles.Option}>
-        <h3>Type of Questions</h3>
-        <select name="type" onChange={(e) => setType(e.target.value)}>
-          <option value="boolean" defaultValue>
-            True or False
-          </option>
-          <option value="multiple">Multiple Choice</option>
-        </select>
+      <div
+        className={
+          fetched
+            ? [styles.UserOptionContainer, styles.hide].join(" ")
+            : styles.UserOptionContainer
+        }
+      >
+        <div className={styles.Option}>
+          <h3>Number of Questions</h3>
+          <input
+            type="number"
+            name="questions"
+            placeholder={quantity}
+            value={quantity}
+            onChange={(e) => setQuantity(e.target.value)}
+          />
+        </div>
+        <div className={styles.Option}>
+          <h3>Difficulty Level</h3>
+          <select name="level" onChange={(e) => setLevel(e.target.value)}>
+            <option value="easy" defaultValue>
+              Easy
+            </option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        <div className={styles.Option}>
+          <h3>Type of Questions</h3>
+          <select name="type" onChange={(e) => setType(e.target.value)}>
+            <option value="boolean" defaultValue>
+              True or False
+            </option>
+            <option value="multiple">Multiple Choice</option>
+          </select>
+        </div>
+        <div
+          className="FetchButton"
+          onClick={() => fetchQuestions(quantity, level, type)}
+        >
+          <p>FetchQuestions</p>
+          <Loader />
+        </div>
       </div>
     </div>
   );

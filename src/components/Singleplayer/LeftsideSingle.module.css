@@ -4,6 +4,7 @@
 
 .Count {
   margin: 15px;
+  display: block;
 }
 
 .Option {
@@ -16,6 +17,10 @@
   margin: 10px 0;
   font-weight: bold;
   font-size: 1.65rem;
+}
+
+.hide {
+  display: none;
 }
 
 .Option Input {

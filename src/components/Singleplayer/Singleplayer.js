@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Singleplayer.module.css";
 import Layout from "../Layout/Layout";
-// import Count from "../Count/Count";
 import LeftsideSingle from "./LeftsideSingle";
 
 const Singleplayer = ({ user }) => {
@@ -9,6 +8,26 @@ const Singleplayer = ({ user }) => {
   const [quantity, setQuantity] = useState(10);
   const [level, setLevel] = useState("easy");
   const [type, setType] = useState("boolean");
+  const [fetched, setFetched] = useState(false);
+
+  // https://opentdb.com/api.php?amount=10&category=19&difficulty=medium&type=boolean
+  const url = "https://opentdb.com/api.php?category=19";
+
+  const fetchQuestions = async (amount, level, type) => {
+    const res = await fetch(
+      `${url}&amount=${quantity}&difficult=${level}&type=${type}`
+    );
+    const questions = await res.json();
+    setFetched(true);
+    setShow(!show);
+    console.log(questions);
+  };
+
+  // useEffect(() => {
+  //   fetchQuestions(quantity, level, type);
+  //   return () => {};
+  // }, []);
+
   return (
     <Layout>
       <div className={styles.Layoutplayer}>
@@ -28,6 +47,8 @@ const Singleplayer = ({ user }) => {
               setLevel,
               setType,
             }}
+            fetchQuestions={fetchQuestions}
+            fetched={fetched}
           />
         </div>
         <div className={styles.Main}>

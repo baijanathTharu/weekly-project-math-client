@@ -15,6 +15,7 @@ const Singleplayer = ({ user }) => {
   const [fetched, setFetched] = useState(false);
   const [questions, setQuestions] = useState("");
   const [optionClicked, setOptionClicked] = useState([]);
+  const [count, setCount] = useState(0);
 
   // https://opentdb.com/api.php?amount=10&category=19&difficulty=medium&type=boolean
   const url = "https://opentdb.com/api.php?category=19";
@@ -22,14 +23,17 @@ const Singleplayer = ({ user }) => {
   // check answer handler
   const checkAnswer = (correct, ans, id) => {
     let isTrue = null;
+    let tempCount = count;
     if (correct === ans) {
       isTrue = true;
+      tempCount++;
     } else {
       isTrue = false;
     }
     const newArr = [...optionClicked];
     newArr.splice(id, 0, { status: true, queId: id, isTrue });
     setOptionClicked(newArr);
+    setCount(tempCount);
     console.log("newARr: ", newArr);
     console.log("optionClicked: ", optionClicked);
   };
@@ -112,6 +116,7 @@ const Singleplayer = ({ user }) => {
           className={`${styles.Leftside} ${show ? styles.show : styles.hide}`}
         >
           <LeftsideSingle
+            user={user}
             userOptions={{
               quantity,
               level,
@@ -123,6 +128,7 @@ const Singleplayer = ({ user }) => {
             fetchQuestions={fetchQuestions}
             fetched={fetched}
             fetching={fetching}
+            count={count}
           />
         </div>
         <div className={styles.Main}>{main}</div>

@@ -7,6 +7,8 @@ const LeftsideSingle = ({
   fetchQuestions,
   fetched,
   fetching,
+  count,
+  user,
 }) => {
   const loader = fetching ? (
     <div className={styles.LoaderContainer}>
@@ -17,7 +19,8 @@ const LeftsideSingle = ({
   return (
     <div className={styles.LeftsideSingle}>
       <div className={fetched ? styles.Count : styles.hide}>
-        <h3>Count will be here</h3>
+        <h3>{user}</h3>
+        <p>Your Score is: {count}</p>
       </div>
       <div
         className={

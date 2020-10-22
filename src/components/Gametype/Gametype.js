@@ -8,9 +8,11 @@ const Gametype = ({ user }) => {
     <Layout>
       {user ? null : <Redirect to="/" />}
       <div className={styles.Gametype}>
-        <h1>Type of the game</h1>
-        <Link to="/single">Single Player</Link>
-        <Link to="/multi">Multi Player</Link>
+        <h3>Game Mode</h3>
+        <div className={styles.Links}>
+          <Link to="/single">Single Player</Link>
+          <Link to="/multi">Multi Player</Link>
+        </div>
       </div>
     </Layout>
   );

@@ -1,11 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import styles from "./Gametype.module.css";
 import Layout from "../Layout/Layout";
 
-const Gametype = () => {
+const Gametype = ({ user }) => {
   return (
     <Layout>
+      {user ? null : <Redirect to="/" />}
       <div className={styles.Gametype}>
         <h1>Type of the game</h1>
         <Link to="/single">Single Player</Link>

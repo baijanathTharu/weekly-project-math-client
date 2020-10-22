@@ -30,12 +30,18 @@ const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/gametype" component={Gametype} />
+        <Route
+          path="/gametype"
+          render={(props) => <Gametype {...props} user={username} />}
+        />
         <Route
           path="/single"
           render={(props) => <Singleplayer {...props} user={username} />}
         />
-        <Route path="/multi" component={Multiplayer} />
+        <Route
+          path="/multi"
+          render={(props) => <Multiplayer {...props} user={username} />}
+        />
         <Route
           path="/"
           render={(props) => (

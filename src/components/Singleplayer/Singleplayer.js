@@ -3,6 +3,7 @@ import styles from "./Singleplayer.module.css";
 import Layout from "../Layout/Layout";
 import LeftsideSingle from "./LeftsideSingle";
 import { MdClear, MdEdit } from "react-icons/md";
+import { Redirect } from "react-router-dom";
 
 const entities = require("entities");
 
@@ -111,6 +112,7 @@ const Singleplayer = ({ user }) => {
 
   return (
     <Layout>
+      {user ? null : <Redirect to="/" />}
       <div className={styles.Layoutplayer}>
         <div
           className={`${styles.Leftside} ${show ? styles.show : styles.hide}`}

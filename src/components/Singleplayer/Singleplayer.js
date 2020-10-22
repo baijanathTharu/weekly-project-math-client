@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./Singleplayer.module.css";
 import Layout from "../Layout/Layout";
 import LeftsideSingle from "./LeftsideSingle";
+import { MdClear, MdEdit } from "react-icons/md";
 
 const entities = require("entities");
 
@@ -20,15 +21,14 @@ const Singleplayer = ({ user }) => {
 
   // check answer handler
   const checkAnswer = (correct, ans, id) => {
-    // console.log("correct: ", correct);
-    // console.log("answ: ", ans);
+    let isTrue = null;
     if (correct === ans) {
-      // console.log("Correct answer");
+      isTrue = true;
     } else {
-      // console.log("wrong answer");
+      isTrue = false;
     }
     const newArr = [...optionClicked];
-    newArr.splice(id, 0, { status: true, queId: id });
+    newArr.splice(id, 0, { status: true, queId: id, isTrue });
     setOptionClicked(newArr);
     console.log("newARr: ", newArr);
     console.log("optionClicked: ", optionClicked);
@@ -40,12 +40,7 @@ const Singleplayer = ({ user }) => {
         const rand = Math.floor(Math.random() * (incorrect_answers.length + 1));
         answersArr.splice(rand, 0, correct_answer);
 
-        // console.log("Options: ", answersArr);
-        // console.log("correct: ", correct_answer);
-
         const options = answersArr.map((ans, idy) => {
-          // console.log("Optionclicked: ", optionClicked);
-          // console.log("idx: ", idx);
           return (
             <div
               key={idy}
@@ -60,7 +55,21 @@ const Singleplayer = ({ user }) => {
         });
 
         return (
-          <div className={styles.QuestionBorder} key={idx}>
+          <div
+            className={`${styles.QuestionBorder} ${
+              optionClicked[idx]?.isTrue ? styles.green : null
+            }`}
+            key={idx}
+          >
+            {optionClicked[idx]?.status ? (
+              optionClicked[idx]?.isTrue ? null : (
+                <MdClear
+                  style={{ color: "red", fontSize: 20, fontWeight: "bold" }}
+                />
+              )
+            ) : (
+              <MdEdit />
+            )}
             <div className={styles.QuestionContainer}>
               <div className={styles.Question}>
                 <p>{idx + 1 + ". " + entities.decodeHTML(question)}</p>
@@ -94,7 +103,6 @@ const Singleplayer = ({ user }) => {
     // results has array of questions
     setQuestions(data.results);
     setShow(!show);
-    // console.log(data.results);
   };
 
   return (

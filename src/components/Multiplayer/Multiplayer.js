@@ -3,28 +3,44 @@ import { Redirect } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import styles from "./Multiplayer.module.css";
 import { MdClear, MdMenu } from "react-icons/md";
+import Leftsidemulti from "./Leftsidemulti";
 
 import socketIO from "socket.io-client";
 
 const url = "http://localhost:3001";
 
+const socket = socketIO(url);
+
 const Multiplayer = ({ user }) => {
+  const [level, setLevel] = useState("easy");
+  const [type, setType] = useState("boolean");
   const [show, setShow] = useState(false);
   const [msg, setMsg] = useState("");
 
   // make socket connection when component is mounted
   useEffect(() => {
-    const socket = socketIO(url);
-
     socket.on("connection", () => {
       console.log("Connected to the server.");
     });
     socket.emit("message", "Hello server whats up?");
-    socket.on("message", (m) => {
-      setMsg(m);
-      console.log(`Message received: ${m}`);
-    });
   }, []);
+
+  socket.on("message", (m) => {
+    setMsg(m);
+    console.log(`Message received: ${m}`);
+  });
+
+  // Welcome User
+  const welcomeUser = (
+    <div className={styles.WelcomeUser}>
+      <h2>
+        Welcome <span className={styles.Username}>{user}</span> to
+        <span className={styles.MatheGamics}> MatheGamics.</span>
+      </h2>
+      <h3 className={styles.Wish}>All The Best!</h3>
+      <h4 onClick={() => setShow(true)}>Select Options</h4>
+    </div>
+  );
 
   return (
     <Layout>
@@ -33,12 +49,17 @@ const Multiplayer = ({ user }) => {
         <div
           className={`${styles.Leftside} ${show ? styles.show : styles.hide}`}
         >
-          <h3>Left side</h3>
+          <Leftsidemulti
+            user={user}
+            userOptions={{
+              level,
+              type,
+              setLevel,
+              setType,
+            }}
+          />
         </div>
-        <div className={styles.Main}>
-          <h3>Main</h3>
-          <h4>Message Received: {msg}</h4>
-        </div>
+        <div className={styles.Main}>{welcomeUser}</div>
         <div className={styles.Button} onClick={() => setShow(!show)}>
           {show ? <MdClear /> : <MdMenu />}
         </div>

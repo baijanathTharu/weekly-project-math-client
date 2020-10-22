@@ -1,0 +1,57 @@
+.ChooseRoom h2 {
+  color: var(--clr-wheat);
+  margin: 20px 15px;
+  margin-top: 15px;
+  font-weight: bold;
+  font-size: 1.8rem;
+  text-align: center;
+  border-bottom: 2px solid var(--clr-darkpink);
+}
+
+.Option {
+  margin: 15px;
+}
+
+.Option h3 {
+  color: var(--clr-darkpink);
+  margin: 10px 0;
+  font-weight: bold;
+  font-size: 1.65rem;
+}
+
+.Option Input {
+  height: 3rem;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--clr-wheat);
+  outline: none;
+}
+
+.Option Select {
+  height: 3rem;
+  width: 100%;
+  /* padding: 10px; */
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--clr-wheat);
+  outline: none;
+}
+
+.FetchButton {
+  margin: 20px auto;
+  background: var(--clr-black);
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 1.5rem;
+  text-align: center;
+  width: 50%;
+  cursor: pointer;
+}
+
+.FetchButton p {
+  color: var(--clr-wheat);
+}

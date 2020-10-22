@@ -1,4 +1,6 @@
-.ChooseRoom h2 {
+.ChooseRoom h2,
+.ScoreContainer h2,
+.ChatContainer h2 {
   color: var(--clr-wheat);
   margin: 20px 15px;
   margin-top: 15px;
@@ -33,7 +35,6 @@
 .Option Select {
   height: 3rem;
   width: 100%;
-  /* padding: 10px; */
   font-size: 1.4rem;
   border: none;
   border-radius: 10px;
@@ -53,5 +54,78 @@
 }
 
 .FetchButton p {
+  color: var(--clr-wheat);
+}
+
+.Scores {
+  margin: 15px;
+}
+
+.Scores {
+  list-style: none;
+}
+
+.Scores li {
+  color: var(--clr-wheat);
+  margin: 10px 0;
+  font-size: 1.5rem;
+}
+
+.InputContainer {
+  margin: 15px;
+  display: flex;
+}
+
+.InputContainer textarea {
+  height: 2.5rem;
+  width: 100%;
+  padding: 10px;
+  font-size: 1.2rem;
+  border: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background-color: var(--clr-wheat);
+  outline: none;
+}
+
+.InputContainer button {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 2.5rem;
+  width: 50px;
+  background-color: var(--clr-black);
+  outline: none;
+  border: none;
+}
+
+.MessageContainer {
+  margin: 15px 10px;
+  height: 500px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* for opera, chrome and safari */
+.MessageContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.Message {
+  margin: 10px 0;
+  padding: 15px;
+  background-color: rgb(245, 222, 179, 0.1);
+  border-radius: 10px;
+}
+
+.Message h4 {
+  font-size: 1.25rem;
+  font-weight: bolder;
+  margin: 5px 0;
+  color: var(--clr-darkpink);
+}
+
+.Message p {
   color: var(--clr-wheat);
 }

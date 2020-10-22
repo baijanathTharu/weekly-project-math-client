@@ -12,6 +12,16 @@
   height: 100%;
   background-color: var(--clr-bluish-dark);
   width: 300px;
+  z-index: 5;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* for opera, chrome and safari */
+.Leftside::-webkit-scrollbar {
+  display: none;
 }
 
 .Count {

@@ -35,7 +35,57 @@ const Leftsidemulti = ({
     </div>
   );
 
-  return <div className={styles.Leftsidemulti}>{chooseRoom}</div>;
+  const scoreContainer = (
+    <div className={styles.ScoreContainer}>
+      <h2>Room Name</h2>
+      <ul className={styles.Scores}>
+        <li>UserOne: 5</li>
+        <li>UserTwo: 3</li>
+        <li>UserThree: 0</li>
+        <li>UserFour: 0</li>
+      </ul>
+    </div>
+  );
+
+  const chatContainer = (
+    <div className={styles.ChatContainer}>
+      <h2>Chat Room</h2>
+      <div className={styles.InputContainer}>
+        <textarea name="messsge"></textarea>
+        <button>Send</button>
+      </div>
+      <div className={styles.MessageContainer}>
+        <div className={styles.Message}>
+          <h4>Username</h4>
+          <p>Hello, some message for you...</p>
+        </div>
+        <div className={styles.Message}>
+          <h4>Username</h4>
+          <p>Hello, some message for you...</p>
+        </div>
+        <div className={styles.Message}>
+          <h4>Username</h4>
+          <p>Hello, some message for you...</p>
+        </div>
+        <div className={styles.Message}>
+          <h4>Username</h4>
+          <p>Hello, some message for you...</p>
+        </div>
+        <div className={styles.Message}>
+          <h4>Username</h4>
+          <p>Hello, some message for you...</p>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <div className={styles.Leftsidemulti}>
+      {chooseRoom}
+      {scoreContainer}
+      {chatContainer}
+    </div>
+  );
 };
 
 export default Leftsidemulti;

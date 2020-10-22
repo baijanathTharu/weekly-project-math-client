@@ -1,0 +1,73 @@
+.Layoutplayer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.Leftside {
+  position: fixed;
+  top: 10vh;
+  left: 0;
+  height: 100%;
+  background-color: var(--clr-bluish-dark);
+  width: 300px;
+}
+
+.Count {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  top: 20px;
+  right: 20px;
+  background-color: teal;
+}
+
+.Main {
+  background-color: var(--clr-wheat);
+  flex: 1;
+  min-width: 350px;
+  color: black;
+  margin-left: 300px;
+}
+
+@media (max-width: 700px) {
+  .Main {
+    min-width: 100%;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .Leftside {
+    top: 0;
+    width: 80%;
+    z-index: 5;
+    transition: transform 1s ease-in-out;
+  }
+
+  .Button {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: var(--clr-wheat);
+    background-color: var(--clr-black);
+    z-index: 10;
+  }
+
+  .show {
+    display: inline-block;
+    transform: translateX(0);
+  }
+
+  .hide {
+    display: none;
+    transform: translateX(-100%);
+  }
+}

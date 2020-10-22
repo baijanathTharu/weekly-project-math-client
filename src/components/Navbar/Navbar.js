@@ -13,7 +13,7 @@ const Navbar = () => {
         setStick(false);
       }
     });
-  });
+  }, []);
 
   return (
     <div className={`${styles.Navbar} ${stick ? styles.sticky : null}`}>

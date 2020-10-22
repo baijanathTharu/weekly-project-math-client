@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./Singleplayer.module.css";
 import Layout from "../Layout/Layout";
 import LeftsideSingle from "./LeftsideSingle";
-import { MdClear, MdEdit } from "react-icons/md";
+import { MdClear, MdEdit, MdMenu } from "react-icons/md";
 import { Redirect } from "react-router-dom";
 
 const entities = require("entities");
@@ -35,8 +35,6 @@ const Singleplayer = ({ user }) => {
     newArr.splice(id, 0, { status: true, queId: id, isTrue });
     setOptionClicked(newArr);
     setCount(tempCount);
-    console.log("newARr: ", newArr);
-    console.log("optionClicked: ", optionClicked);
   };
 
   const questionsList = questions
@@ -93,6 +91,7 @@ const Singleplayer = ({ user }) => {
         <span className={styles.MatheGamics}> MatheGamics.</span>
       </h2>
       <h3 className={styles.Wish}>All The Best!</h3>
+      <h4 onClick={() => setShow(true)}>Select Options</h4>
     </div>
   );
 
@@ -101,13 +100,13 @@ const Singleplayer = ({ user }) => {
   const fetchQuestions = async (amount, level, type) => {
     setFetching(!fetching);
     const res = await fetch(
-      `${url}&amount=${quantity}&difficult=${level}&type=${type}`
+      `${url}&amount=${amount}&difficult=${level}&type=${type}`
     );
     const data = await res.json();
+    setShow(!show);
     setFetched(true);
     // results has array of questions
     setQuestions(data.results);
-    setShow(!show);
   };
 
   return (
@@ -134,7 +133,9 @@ const Singleplayer = ({ user }) => {
           />
         </div>
         <div className={styles.Main}>{main}</div>
-        <div className={styles.Button} onClick={() => setShow(!show)}></div>
+        <div className={styles.Button} onClick={() => setShow(!show)}>
+          {show ? <MdClear /> : <MdMenu />}
+        </div>
       </div>
     </Layout>
   );

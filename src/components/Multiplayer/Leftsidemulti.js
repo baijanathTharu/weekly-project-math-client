@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Leftsidemulti.module.css";
 
 const Leftsidemulti = ({
+  members,
   userOptions: { level, type, setLevel, setType, room },
   user,
   selectRoom,
@@ -36,15 +37,16 @@ const Leftsidemulti = ({
     </div>
   );
 
+  const membersList = members
+    ? members.map((mem, idx) => {
+        return <li key={`${mem.userName}_${idx}`}>{mem.userName}: 2</li>;
+      })
+    : null;
+
   const scoreContainer = (
     <div className={styles.ScoreContainer}>
-      <h2>Room Name</h2>
-      <ul className={styles.Scores}>
-        <li>UserOne: 5</li>
-        <li>UserTwo: 3</li>
-        <li>UserThree: 0</li>
-        <li>UserFour: 0</li>
-      </ul>
+      <h2>{room}</h2>
+      <ul className={styles.Scores}>{membersList}</ul>
     </div>
   );
 
@@ -86,9 +88,8 @@ const Leftsidemulti = ({
         chooseRoom
       ) : (
         <>
-          {" "}
-          <scoreContainer />
-          <chatContainer />
+          {scoreContainer}
+          {chatContainer}
         </>
       )}
     </div>

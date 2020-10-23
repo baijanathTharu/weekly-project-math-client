@@ -17,6 +17,7 @@ const Multiplayer = ({ user }) => {
   const [show, setShow] = useState(false);
   const [msg, setMsg] = useState("");
   const [room, setRoom] = useState(null);
+  const [members, setMembers] = useState([]);
 
   // make socket connection when component is mounted
   useEffect(() => {
@@ -39,12 +40,30 @@ const Multiplayer = ({ user }) => {
       userName: user,
     };
     socket.emit("room", JSON.stringify(roomInfo));
-    console.log("roomInfo: ", roomInfo);
+    // console.log("roomInfo: ", roomInfo);
   };
 
   // when room has been created
   socket.on("room", (res) => {
-    console.log("server:>> ", res);
+    const serverRes = JSON.parse(res);
+    console.log("Members in this room are:>> ", serverRes.roomMembers);
+    // now set the room
+    setRoom(serverRes.roomName);
+    // setMembers(serverRes.roomMembers);
+    // console.log("Members state: ", members);
+  });
+
+  // when new members join
+  socket.on(`add_${room}`, (res) => {
+    const list = JSON.parse(res);
+    setMembers(list.membersList);
+    console.log("List: ", list);
+    console.log("Members: ", members);
+  });
+
+  // when a user has disconnected
+  socket.on(`user_disconnected_${room}`, (msg) => {
+    console.log("Disconnection:>>> ", msg);
   });
 
   // Welcome User
@@ -67,6 +86,7 @@ const Multiplayer = ({ user }) => {
           className={`${styles.Leftside} ${show ? styles.show : styles.hide}`}
         >
           <Leftsidemulti
+            members={members}
             user={user}
             userOptions={{
               level,

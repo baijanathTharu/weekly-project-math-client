@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import styles from "./Leftsidemulti.module.css";
+import { MdSend } from "react-icons/md";
 
 const Leftsidemulti = ({
   members,
   userOptions: { level, type, setLevel, setType, room },
   user,
   selectRoom,
+  sendChat,
+  setChatMsg,
+  chatsList,
 }) => {
+  // chatref for scrolling
+  const chatRef = useRef(null);
+
+  // scroll whenver chats are received
+  useEffect(() => {
+    if (chatRef.current) {
+      chatRef.current.scrollIntoView();
+    }
+  });
+
   const chooseRoom = (
     <div className={styles.ChooseRoom}>
       <h2>Choose Room</h2>
@@ -51,34 +65,33 @@ const Leftsidemulti = ({
     </div>
   );
 
+  // rendering chats
+  const chatsRender = !chatsList
+    ? null
+    : chatsList.map((msg, idx) => {
+        return (
+          <div key={idx} className={styles.Message}>
+            <h4>{msg.user}</h4>
+            <p>{msg.chat}</p>
+          </div>
+        );
+      });
+
   const chatContainer = (
     <div className={styles.ChatContainer}>
       <h2>Chat Room</h2>
       <div className={styles.InputContainer}>
-        <textarea name="messsge"></textarea>
-        <button>Send</button>
+        <textarea
+          name="messsge"
+          onChange={(e) => setChatMsg(e.target.value)}
+        ></textarea>
+        <button onClick={() => sendChat()}>
+          <MdSend />
+        </button>
       </div>
       <div className={styles.MessageContainer}>
-        <div className={styles.Message}>
-          <h4>Username</h4>
-          <p>Hello, some message for you...</p>
-        </div>
-        <div className={styles.Message}>
-          <h4>Username</h4>
-          <p>Hello, some message for you...</p>
-        </div>
-        <div className={styles.Message}>
-          <h4>Username</h4>
-          <p>Hello, some message for you...</p>
-        </div>
-        <div className={styles.Message}>
-          <h4>Username</h4>
-          <p>Hello, some message for you...</p>
-        </div>
-        <div className={styles.Message}>
-          <h4>Username</h4>
-          <p>Hello, some message for you...</p>
-        </div>
+        {chatsRender}
+        <div ref={chatRef}></div>
       </div>
     </div>
   );

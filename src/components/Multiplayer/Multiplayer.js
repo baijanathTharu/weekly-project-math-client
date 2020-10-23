@@ -18,6 +18,8 @@ const Multiplayer = ({ user }) => {
   const [msg, setMsg] = useState("");
   const [room, setRoom] = useState(null);
   const [members, setMembers] = useState([]);
+  const [chatMsg, setChatMsg] = useState("");
+  const [chats, setChats] = useState([]);
 
   // make socket connection when component is mounted
   useEffect(() => {
@@ -76,6 +78,23 @@ const Multiplayer = ({ user }) => {
     </div>
   );
 
+  // chat handler
+  const chatHandler = () => {
+    // emit a chat event in the room
+    const chatDetails = { user: user, chat: chatMsg };
+    socket.emit(`chat_${room}`, JSON.stringify(chatDetails));
+  };
+
+  // listen chat events
+  socket.on(`chat_${room}`, (chatDetails) => {
+    //  const {user, chat} = JSON.parse(chatDetails);
+    const chatFromServer = JSON.parse(chatDetails);
+    const tempChats = [...chats];
+    tempChats.push(chatFromServer);
+    // now update chats state with new chats
+    setChats(tempChats);
+  });
+
   return (
     <Layout>
       {user ? null : <Redirect to="/" />}
@@ -94,6 +113,9 @@ const Multiplayer = ({ user }) => {
               room,
             }}
             selectRoom={() => roomHandler()}
+            sendChat={() => chatHandler()}
+            setChatMsg={setChatMsg}
+            chatsList={chats}
           />
         </div>
         <div className={styles.Main}>{welcomeUser}</div>

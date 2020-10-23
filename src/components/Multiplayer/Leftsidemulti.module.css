@@ -109,15 +109,23 @@
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
   height: 2.5rem;
+  padding-top: 5px;
   width: 50px;
   background-color: var(--clr-black);
+  color: var(--clr-wheat);
+  font-size: 1.35rem;
   outline: none;
   border: none;
+  cursor: pointer;
+}
+
+.InputContainer button:hover {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .MessageContainer {
   margin: 15px 10px;
-  height: 500px;
+  height: 400px;
   overflow-x: hidden;
   overflow-y: auto;
   -ms-overflow-style: none;

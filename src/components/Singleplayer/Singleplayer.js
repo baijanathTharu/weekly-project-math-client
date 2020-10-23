@@ -15,7 +15,7 @@ const Singleplayer = ({ user }) => {
   const [fetching, setFetching] = useState(false);
   const [fetched, setFetched] = useState(false);
   const [questions, setQuestions] = useState("");
-  const [optionClicked, setOptionClicked] = useState([]);
+  const [optionClicked, setOptionClicked] = useState(Array(quantity).fill(0));
   const [count, setCount] = useState(0);
 
   // https://opentdb.com/api.php?amount=10&category=19&difficulty=medium&type=boolean
@@ -32,8 +32,9 @@ const Singleplayer = ({ user }) => {
       isTrue = false;
     }
     const newArr = [...optionClicked];
-    newArr.splice(id, 0, { status: true, queId: id, isTrue });
-    setOptionClicked(newArr);
+
+    newArr.splice(id, 1, { status: true, queId: id, isTrue });
+    setOptionClicked([...newArr]);
     setCount(tempCount);
   };
 
@@ -50,7 +51,7 @@ const Singleplayer = ({ user }) => {
               className={`${styles.Option} ${
                 optionClicked[idx]?.status ? styles.optionDisabled : null
               }`}
-              onClick={() => checkAnswer(correct_answer, ans, idx)}
+              onClick={(e) => checkAnswer(correct_answer, ans, idx)}
             >
               <p>{entities.decodeHTML(ans)}</p>
             </div>

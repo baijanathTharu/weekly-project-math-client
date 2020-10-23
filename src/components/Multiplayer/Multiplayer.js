@@ -16,6 +16,7 @@ const Multiplayer = ({ user }) => {
   const [type, setType] = useState("boolean");
   const [show, setShow] = useState(false);
   const [msg, setMsg] = useState("");
+  const [room, setRoom] = useState(null);
 
   // make socket connection when component is mounted
   useEffect(() => {
@@ -28,6 +29,22 @@ const Multiplayer = ({ user }) => {
   socket.on("message", (m) => {
     setMsg(m);
     console.log(`Message received: ${m}`);
+  });
+
+  // room handler
+  const roomHandler = () => {
+    const roomInfo = {
+      roomLevel: level,
+      roomType: type,
+      userName: user,
+    };
+    socket.emit("room", JSON.stringify(roomInfo));
+    console.log("roomInfo: ", roomInfo);
+  };
+
+  // when room has been created
+  socket.on("room", (res) => {
+    console.log("server:>> ", res);
   });
 
   // Welcome User
@@ -56,7 +73,9 @@ const Multiplayer = ({ user }) => {
               type,
               setLevel,
               setType,
+              room,
             }}
+            selectRoom={() => roomHandler()}
           />
         </div>
         <div className={styles.Main}>{welcomeUser}</div>

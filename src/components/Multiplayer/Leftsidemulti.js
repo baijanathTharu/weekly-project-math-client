@@ -2,8 +2,9 @@ import React from "react";
 import styles from "./Leftsidemulti.module.css";
 
 const Leftsidemulti = ({
-  userOptions: { level, type, setLevel, setType },
+  userOptions: { level, type, setLevel, setType, room },
   user,
+  selectRoom,
 }) => {
   const chooseRoom = (
     <div className={styles.ChooseRoom}>
@@ -29,7 +30,7 @@ const Leftsidemulti = ({
           </select>
         </div>
       </div>
-      <div className={styles.FetchButton}>
+      <div className={styles.FetchButton} onClick={() => selectRoom()}>
         <p>Start</p>
       </div>
     </div>
@@ -81,9 +82,15 @@ const Leftsidemulti = ({
 
   return (
     <div className={styles.Leftsidemulti}>
-      {chooseRoom}
-      {scoreContainer}
-      {chatContainer}
+      {!room ? (
+        chooseRoom
+      ) : (
+        <>
+          {" "}
+          <scoreContainer />
+          <chatContainer />
+        </>
+      )}
     </div>
   );
 };

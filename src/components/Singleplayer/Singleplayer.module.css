@@ -85,14 +85,14 @@
 }
 
 .OptionContainer {
-  margin: 20px;
+  margin: 10px;
   display: grid;
-  grid-gap: 20px;
+  grid-gap: 10px;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .Option {
-  margin: 20px;
+  margin: 10px;
   padding: 20px;
   background-color: rgb(70, 70, 163);
   border: none;
@@ -101,7 +101,8 @@
 }
 
 .Option:hover {
-  background-color: rgb(40, 133, 40);
+  background-color: var(--clr-black);
+  color: var(--clr-bluish-dark);
 }
 
 .Option p {
@@ -114,6 +115,22 @@
   pointer-events: none;
   cursor: not-allowed;
   background-color: gray;
+}
+
+.Correct {
+  font-weight: bold;
+  background-color: green;
+  color: wheat;
+  width: fit-content;
+  padding: 10px;
+}
+
+.CorrectAns {
+  font-weight: bold;
+  background-color: var(--clr-wheat);
+  color: var(--clr-black);
+  width: fit-content;
+  padding: 10px;
 }
 
 @media (max-width: 768px) {

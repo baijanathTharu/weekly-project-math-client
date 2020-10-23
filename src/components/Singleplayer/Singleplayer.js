@@ -3,6 +3,7 @@ import styles from "./Singleplayer.module.css";
 import Layout from "../Layout/Layout";
 import LeftsideSingle from "./LeftsideSingle";
 import { MdClear, MdEdit, MdMenu } from "react-icons/md";
+import { FaCheck } from "react-icons/fa";
 import { Redirect } from "react-router-dom";
 
 const entities = require("entities");
@@ -66,10 +67,24 @@ const Singleplayer = ({ user }) => {
             key={idx}
           >
             {optionClicked[idx]?.status ? (
-              optionClicked[idx]?.isTrue ? null : (
-                <MdClear
-                  style={{ color: "red", fontSize: 20, fontWeight: "bold" }}
-                />
+              optionClicked[idx]?.isTrue ? (
+                <>
+                  <FaCheck style={{ color: "wheat" }} />
+                  <p className={styles.CorrectAns}>
+                    <span>Correct: </span>
+                    {correct_answer}
+                  </p>
+                </>
+              ) : (
+                <>
+                  <MdClear
+                    style={{ color: "red", fontSize: 20, fontWeight: "bold" }}
+                  />
+                  <p className={styles.Correct}>
+                    <span>Correct: </span>
+                    {correct_answer}
+                  </p>
+                </>
               )
             ) : (
               <MdEdit />

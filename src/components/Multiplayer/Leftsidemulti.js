@@ -47,6 +47,7 @@ const Leftsidemulti = ({
     <div className={styles.ScoreContainer}>
       <h2>{room}</h2>
       <ul className={styles.Scores}>{membersList}</ul>
+      {user === members[0]?.userName ? <button>Compete</button> : null}
     </div>
   );
 

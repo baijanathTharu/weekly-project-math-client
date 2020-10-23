@@ -71,6 +71,23 @@
   font-size: 1.5rem;
 }
 
+.ScoreContainer button {
+  background-color: var(--clr-black);
+  color: var(--clr-wheat);
+  padding: 10px;
+  margin: 10px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.ScoreContainer button:hover {
+  background-color: var(--clr-wheat);
+  color: var(--clr-black);
+}
+
 .InputContainer {
   margin: 15px;
   display: flex;

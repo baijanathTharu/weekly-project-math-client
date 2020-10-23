@@ -49,8 +49,6 @@ const Multiplayer = ({ user }) => {
     console.log("Members in this room are:>> ", serverRes.roomMembers);
     // now set the room
     setRoom(serverRes.roomName);
-    // setMembers(serverRes.roomMembers);
-    // console.log("Members state: ", members);
   });
 
   // when new members join

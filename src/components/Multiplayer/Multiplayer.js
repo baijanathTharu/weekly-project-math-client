@@ -10,7 +10,7 @@ import socketIO from "socket.io-client";
 
 const entities = require("entities");
 
-const url = "http://localhost:3001";
+const url = "https://mathegamics-server.herokuapp.com/";
 
 const socket = socketIO(url);
 

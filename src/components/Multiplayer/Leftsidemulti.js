@@ -11,6 +11,7 @@ const Leftsidemulti = ({
   setChatMsg,
   chatsList,
   compete,
+  hideCompeteBtn,
 }) => {
   // chatref for scrolling
   const chatRef = useRef(null);
@@ -54,7 +55,7 @@ const Leftsidemulti = ({
 
   const membersList = members
     ? members.map((mem, idx) => {
-        return <li key={`${mem.userName}_${idx}`}>{mem.userName}: 2</li>;
+        return <li key={`${mem.userName}_${idx}`}>{mem.userName}</li>;
       })
     : null;
 
@@ -64,7 +65,12 @@ const Leftsidemulti = ({
       <h2>{room}</h2>
       <ul className={styles.Scores}>{membersList}</ul>
       {user === members[0]?.userName ? (
-        <button onClick={() => compete()}>Compete</button>
+        <button
+          onClick={() => compete()}
+          className={hideCompeteBtn ? styles.hide : null}
+        >
+          Compete
+        </button>
       ) : null}
     </div>
   );

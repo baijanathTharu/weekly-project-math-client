@@ -154,3 +154,7 @@
 .Message p {
   color: var(--clr-wheat);
 }
+
+.hide {
+  display: none;
+}

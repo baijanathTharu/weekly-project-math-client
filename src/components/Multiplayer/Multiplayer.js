@@ -4,6 +4,7 @@ import Layout from "../Layout/Layout";
 import styles from "./Multiplayer.module.css";
 import { MdClear, MdMenu } from "react-icons/md";
 import Leftsidemulti from "./Leftsidemulti";
+import Loader from "../Loader/Loader";
 
 import socketIO from "socket.io-client";
 
@@ -25,6 +26,8 @@ const Multiplayer = ({ user }) => {
   const [question, setQuestion] = useState(null);
   const [disable, setDisable] = useState(false);
   const [result, setResult] = useState(null);
+  const [hideCompete, setHideCompete] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
 
   // make socket connection when component is mounted
   useEffect(() => {
@@ -102,8 +105,15 @@ const Multiplayer = ({ user }) => {
 
   // competeHandler
   const competeHandler = () => {
+    setHideCompete(true);
     socket.emit(`question_${room}`, "Start the competition");
   };
+
+  // listen for competition starting
+  socket.on(`starting_${room}`, () => {
+    setShowLoader(true);
+    console.log("Competition starting...");
+  });
 
   // listen for question
   socket.on(`question_${room}`, (que) => {
@@ -111,6 +121,7 @@ const Multiplayer = ({ user }) => {
     console.log("Question: ", queToJson);
     setShow(false);
     setQuestion(queToJson);
+    setShowLoader(false);
   });
 
   // emit event when answer is clicked
@@ -119,12 +130,14 @@ const Multiplayer = ({ user }) => {
     setDisable(true);
     const payload = { answer: val === correct, member: user };
     socket.emit(`answer_${room}`, JSON.stringify(payload));
+    setShowLoader(true);
   };
 
   // listen for result
   socket.on(`result_${room}`, (payload) => {
     const payloadToJson = JSON.parse(payload);
     setResult(payloadToJson);
+    setShowLoader(false);
   });
 
   // result on screen
@@ -209,9 +222,17 @@ const Multiplayer = ({ user }) => {
             setChatMsg={setChatMsg}
             chatsList={chats}
             compete={() => competeHandler()}
+            hideCompeteBtn={hideCompete}
           />
         </div>
-        <div className={styles.Main}>{result ? resultContainer : main}</div>
+        <div className={styles.Main}>
+          {result ? resultContainer : main}
+          {showLoader ? (
+            <div className={styles.LoaderContainer}>
+              <Loader />
+            </div>
+          ) : null}
+        </div>
         <div className={styles.Button} onClick={() => setShow(!show)}>
           {show ? <MdClear /> : <MdMenu />}
         </div>

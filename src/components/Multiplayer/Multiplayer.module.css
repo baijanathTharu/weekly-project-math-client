@@ -157,6 +157,12 @@
   padding: 10px;
 }
 
+.LoaderContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (max-width: 700px) {
   .Main {
     min-width: 100%;

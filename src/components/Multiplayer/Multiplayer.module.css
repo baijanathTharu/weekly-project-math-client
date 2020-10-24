@@ -117,6 +117,46 @@
   color: var(--clr-wheat);
 }
 
+.Disable {
+  margin: 10px;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  pointer-events: none;
+  cursor: not-allowed;
+  background-color: gray;
+}
+
+.ResultContainer {
+  background-color: var(--clr-black);
+  padding: 20px;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.ResultContainer h3 {
+  font-size: 1.75rem;
+  color: white;
+  font-weight: bold;
+  border-bottom: 2px solid var(--clr-wheat);
+  width: fit-content;
+}
+
+.Result {
+  margin: 5px 0;
+}
+
+.Result h4 {
+  font-size: 1.5rem;
+  color: var(--clr-wheat);
+  font-weight: 400;
+  padding: 10px;
+}
+
 @media (max-width: 700px) {
   .Main {
     min-width: 100%;

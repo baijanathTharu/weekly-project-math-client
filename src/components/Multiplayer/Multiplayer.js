@@ -23,6 +23,8 @@ const Multiplayer = ({ user }) => {
   const [chatMsg, setChatMsg] = useState("");
   const [chats, setChats] = useState([]);
   const [question, setQuestion] = useState(null);
+  const [disable, setDisable] = useState(false);
+  const [result, setResult] = useState(null);
 
   // make socket connection when component is mounted
   useEffect(() => {
@@ -111,19 +113,62 @@ const Multiplayer = ({ user }) => {
     setQuestion(queToJson);
   });
 
+  // emit event when answer is clicked
+  const answerSelected = (val, correct) => {
+    console.log("Selected answer: ", val);
+    setDisable(true);
+    const payload = { answer: val === correct, member: user };
+    socket.emit(`answer_${room}`, JSON.stringify(payload));
+  };
+
+  // listen for result
+  socket.on(`result_${room}`, (payload) => {
+    const payloadToJson = JSON.parse(payload);
+    setResult(payloadToJson);
+  });
+
+  // result on screen
+  const renderResult = result
+    ? result.map((mem, idx) => {
+        return (
+          <div key={idx} className={styles.Result}>
+            <h4>
+              {mem.userName} <span>{mem.answer ? 1 : 0}</span>{" "}
+            </h4>
+          </div>
+        );
+      })
+    : null;
+
+  const resultContainer = result ? (
+    <div className={styles.ResultContainer}>
+      <h3>Score Board</h3>
+      {renderResult}
+    </div>
+  ) : null;
+
   let showQuestion = null;
 
   // Render question
   if (question) {
     const answersArr = [...question[0].incorrect_answers];
     const rand = Math.floor(Math.random() * (answersArr.length + 1));
-    answersArr.splice(rand, 0, entities.decode(question[0].correct_answer));
+    answersArr.splice(rand, 0, entities.decodeHTML(question[0].correct_answer));
 
     // options list
     const optionsList = answersArr.map((opt, idy) => {
       return (
-        <div key={idy} className={styles.Option}>
-          <p>{opt}</p>
+        <div key={idy} className={disable ? styles.Disable : styles.Option}>
+          <p
+            onClick={() =>
+              answerSelected(
+                entities.decodeHTML(opt),
+                entities.decodeHTML(question[0].correct_answer)
+              )
+            }
+          >
+            {opt}
+          </p>
         </div>
       );
     });
@@ -132,7 +177,7 @@ const Multiplayer = ({ user }) => {
       <div className={styles.QuestionBorder}>
         <div className={styles.QuestionContainer}>
           <div className={styles.Question}>
-            <p>{entities.decode(question[0].question)}</p>
+            <p>{entities.decodeHTML(question[0].question)}</p>
           </div>
         </div>
         <div className={styles.OptionContainer}>{optionsList}</div>
@@ -166,7 +211,7 @@ const Multiplayer = ({ user }) => {
             compete={() => competeHandler()}
           />
         </div>
-        <div className={styles.Main}>{main}</div>
+        <div className={styles.Main}>{result ? resultContainer : main}</div>
         <div className={styles.Button} onClick={() => setShow(!show)}>
           {show ? <MdClear /> : <MdMenu />}
         </div>

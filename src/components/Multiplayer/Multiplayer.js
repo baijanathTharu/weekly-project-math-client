@@ -32,14 +32,14 @@ const Multiplayer = ({ user }) => {
   // make socket connection when component is mounted
   useEffect(() => {
     socket.on("connection", () => {
-      console.log("Connected to the server.");
+      // console.log("Connected to the server.");
     });
     socket.emit("message", "Hello server whats up?");
   }, []);
 
   socket.on("message", (m) => {
     setMsg(m);
-    console.log(`Message received: ${m}`);
+    // console.log(`Message received: ${m}`);
   });
 
   // room handler
@@ -56,7 +56,7 @@ const Multiplayer = ({ user }) => {
   // when room has been created
   socket.on("room", (res) => {
     const serverRes = JSON.parse(res);
-    console.log("Members in this room are:>> ", serverRes.roomMembers);
+    // console.log("Members in this room are:>> ", serverRes.roomMembers);
     // now set the room
     setRoom(serverRes.roomName);
   });
@@ -65,13 +65,13 @@ const Multiplayer = ({ user }) => {
   socket.on(`add_${room}`, (res) => {
     const list = JSON.parse(res);
     setMembers(list.membersList);
-    console.log("List: ", list);
-    console.log("Members: ", members);
+    // console.log("List: ", list);
+    // console.log("Members: ", members);
   });
 
   // when a user has disconnected
   socket.on(`user_disconnected_${room}`, (msg) => {
-    console.log("Disconnection:>>> ", msg);
+    // console.log("Disconnection:>>> ", msg);
   });
 
   // Welcome User
@@ -112,13 +112,13 @@ const Multiplayer = ({ user }) => {
   // listen for competition starting
   socket.on(`starting_${room}`, () => {
     setShowLoader(true);
-    console.log("Competition starting...");
+    // console.log("Competition starting...");
   });
 
   // listen for question
   socket.on(`question_${room}`, (que) => {
     const queToJson = JSON.parse(que);
-    console.log("Question: ", queToJson);
+    // console.log("Question: ", queToJson);
     setShow(false);
     setQuestion(queToJson);
     setShowLoader(false);
@@ -126,7 +126,7 @@ const Multiplayer = ({ user }) => {
 
   // emit event when answer is clicked
   const answerSelected = (val, correct) => {
-    console.log("Selected answer: ", val);
+    // console.log("Selected answer: ", val);
     setDisable(true);
     const payload = { answer: val === correct, member: user };
     socket.emit(`answer_${room}`, JSON.stringify(payload));

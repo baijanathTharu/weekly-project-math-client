@@ -10,6 +10,7 @@ const Leftsidemulti = ({
   sendChat,
   setChatMsg,
   chatsList,
+  compete,
 }) => {
   // chatref for scrolling
   const chatRef = useRef(null);
@@ -57,11 +58,14 @@ const Leftsidemulti = ({
       })
     : null;
 
+  // users and start competing
   const scoreContainer = (
     <div className={styles.ScoreContainer}>
       <h2>{room}</h2>
       <ul className={styles.Scores}>{membersList}</ul>
-      {user === members[0]?.userName ? <button>Compete</button> : null}
+      {user === members[0]?.userName ? (
+        <button onClick={() => compete()}>Compete</button>
+      ) : null}
     </div>
   );
 

@@ -7,6 +7,8 @@ import Leftsidemulti from "./Leftsidemulti";
 
 import socketIO from "socket.io-client";
 
+const entities = require("entities");
+
 const url = "http://localhost:3001";
 
 const socket = socketIO(url);
@@ -20,6 +22,7 @@ const Multiplayer = ({ user }) => {
   const [members, setMembers] = useState([]);
   const [chatMsg, setChatMsg] = useState("");
   const [chats, setChats] = useState([]);
+  const [question, setQuestion] = useState(null);
 
   // make socket connection when component is mounted
   useEffect(() => {
@@ -95,6 +98,50 @@ const Multiplayer = ({ user }) => {
     setChats(tempChats);
   });
 
+  // competeHandler
+  const competeHandler = () => {
+    socket.emit(`question_${room}`, "Start the competition");
+  };
+
+  // listen for question
+  socket.on(`question_${room}`, (que) => {
+    const queToJson = JSON.parse(que);
+    console.log("Question: ", queToJson);
+    setShow(false);
+    setQuestion(queToJson);
+  });
+
+  let showQuestion = null;
+
+  // Render question
+  if (question) {
+    const answersArr = [...question[0].incorrect_answers];
+    const rand = Math.floor(Math.random() * (answersArr.length + 1));
+    answersArr.splice(rand, 0, entities.decode(question[0].correct_answer));
+
+    // options list
+    const optionsList = answersArr.map((opt, idy) => {
+      return (
+        <div key={idy} className={styles.Option}>
+          <p>{opt}</p>
+        </div>
+      );
+    });
+
+    showQuestion = (
+      <div className={styles.QuestionBorder}>
+        <div className={styles.QuestionContainer}>
+          <div className={styles.Question}>
+            <p>{entities.decode(question[0].question)}</p>
+          </div>
+        </div>
+        <div className={styles.OptionContainer}>{optionsList}</div>
+      </div>
+    );
+  }
+
+  const main = question ? showQuestion : welcomeUser;
+
   return (
     <Layout>
       {user ? null : <Redirect to="/" />}
@@ -116,9 +163,10 @@ const Multiplayer = ({ user }) => {
             sendChat={() => chatHandler()}
             setChatMsg={setChatMsg}
             chatsList={chats}
+            compete={() => competeHandler()}
           />
         </div>
-        <div className={styles.Main}>{welcomeUser}</div>
+        <div className={styles.Main}>{main}</div>
         <div className={styles.Button} onClick={() => setShow(!show)}>
           {show ? <MdClear /> : <MdMenu />}
         </div>

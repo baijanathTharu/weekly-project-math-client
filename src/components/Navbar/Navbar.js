@@ -21,7 +21,9 @@ const Navbar = () => {
         <h1>MatheGamics</h1>
       </Link>
       <ul>
-        <li>Rules</li>
+        <li>
+          <Link to="/rules">Rules</Link>
+        </li>
       </ul>
     </div>
   );

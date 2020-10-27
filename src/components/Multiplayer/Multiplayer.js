@@ -125,7 +125,7 @@ const Multiplayer = ({ user }) => {
   });
 
   // emit event when answer is clicked
-  const answerSelected = (val, correct) => {
+  const answerSelected = (val, correct, rand) => {
     // console.log("Selected answer: ", val);
     setDisable(true);
     const payload = { answer: val === correct, member: user };
@@ -166,6 +166,7 @@ const Multiplayer = ({ user }) => {
   if (question) {
     const answersArr = [...question[0].incorrect_answers];
     const rand = Math.floor(Math.random() * (answersArr.length + 1));
+
     answersArr.splice(rand, 0, entities.decodeHTML(question[0].correct_answer));
 
     // options list

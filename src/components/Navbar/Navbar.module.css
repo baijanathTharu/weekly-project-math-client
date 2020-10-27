@@ -35,3 +35,14 @@
   padding: 0 10px;
   font-size: 1.75rem;
 }
+
+.Navbar ul li a {
+  background-color: rgb(160, 141, 141);
+  padding: 10px;
+  color: var(--clr-black);
+  border-radius: 5px;
+}
+
+.Navbar ul li a:hover {
+  background-color: rgba(160, 141, 141, 0.75);
+}

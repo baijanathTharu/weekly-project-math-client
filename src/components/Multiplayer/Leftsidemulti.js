@@ -9,6 +9,7 @@ const Leftsidemulti = ({
   selectRoom,
   sendChat,
   setChatMsg,
+  chatMsg,
   chatsList,
   compete,
   hideCompeteBtn,
@@ -90,18 +91,19 @@ const Leftsidemulti = ({
   const chatContainer = (
     <div className={styles.ChatContainer}>
       <h2>Chat Room</h2>
+      <div className={styles.MessageContainer}>
+        {chatsRender}
+        <div ref={chatRef}></div>
+      </div>
       <div className={styles.InputContainer}>
         <textarea
           name="messsge"
           onChange={(e) => setChatMsg(e.target.value)}
+          value={chatMsg}
         ></textarea>
         <button onClick={() => sendChat()}>
           <MdSend />
         </button>
-      </div>
-      <div className={styles.MessageContainer}>
-        {chatsRender}
-        <div ref={chatRef}></div>
       </div>
     </div>
   );

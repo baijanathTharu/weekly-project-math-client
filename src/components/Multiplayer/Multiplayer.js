@@ -90,6 +90,7 @@ const Multiplayer = ({ user }) => {
   const chatHandler = () => {
     // emit a chat event in the room
     const chatDetails = { user: user, chat: chatMsg };
+    setChatMsg("");
     socket.emit(`chat_${room}`, JSON.stringify(chatDetails));
   };
 
@@ -221,6 +222,7 @@ const Multiplayer = ({ user }) => {
             selectRoom={() => roomHandler()}
             sendChat={() => chatHandler()}
             setChatMsg={setChatMsg}
+            chatMsg={chatMsg}
             chatsList={chats}
             compete={() => competeHandler()}
             hideCompeteBtn={hideCompete}

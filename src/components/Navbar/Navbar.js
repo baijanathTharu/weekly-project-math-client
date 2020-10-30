@@ -6,13 +6,17 @@ const Navbar = () => {
   const [stick, setStick] = useState(false);
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 350) {
+    const updateNavbar = () => {
+      if (window.scrollY > 199) {
         setStick(true);
       } else {
         setStick(false);
       }
-    });
+    };
+    window.addEventListener("scroll", updateNavbar);
+    return () => {
+      window.removeEventListener("scroll", updateNavbar);
+    };
   }, []);
 
   return (
